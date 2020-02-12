@@ -1,0 +1,20 @@
+.auth-input {
+    &__label {
+        width: 100px;
+        display: inline-block;
+        text-align: right;
+        margin-right: 20px;
+    }
+    &__input-field {
+        width: 350px;
+        height: 30px;
+    }
+    &__field-error {
+        margin-left: 20px;
+    }
+    &__has-error {
+        outline: 1px solid red;
+        display: inline-block;
+    }
+    margin-bottom: 20px;
+}

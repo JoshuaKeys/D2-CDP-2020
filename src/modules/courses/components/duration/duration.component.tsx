@@ -6,11 +6,10 @@ import { DurationPropsModel } from '../../models/DurationPropsModel';
 import './duration.component.scss';
 
 export function Duration(props: DurationPropsModel) {
-    const duration = 183;
     return (
         <div className="duration">
-            <FormInput label="Duration" type="text" onChange={props.onChange} value={duration.toString()}/>
-            <span className="duration__formated-value">{formatDurationData(duration)}</span>
+            <FormInput label="Duration" type="text" onChange={props.onChange} value={props.duration ? props.duration.toString(): props.duration}/>
+            <span className="duration__formated-value">{props.duration ? formatDurationData(props.duration) : ''}</span>
         </div>
 
     );

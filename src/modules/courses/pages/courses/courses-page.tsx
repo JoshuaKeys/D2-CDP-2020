@@ -5,35 +5,54 @@ import { Course } from '../../components/course/course.component';
 import { CourseFilter } from '../../components/course-filter/course-filter.component';
 import PropTypes from 'prop-types';
 import './courses-page.scss';
-export function CoursesPage(props: CoursesPropsModel) {
-    const user = 'user1';
-    let courses = props.courses.map((course, idx) => {
-        return <li className="courses-page__item" key={idx}><Course course={course}></Course></li>
+import { CourseModel } from '../../../shared/models/Course.model';
+import { withRouter } from 'react-router-dom';
+
+class CoursesPage extends Component<CoursesPropsModel> {
+    static propType = {
+        courses: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string,
+            duration: PropTypes.number,
+            creationDate: PropTypes.instanceOf(Date),
+            description: PropTypes.string
+        }))
+    }
+    user = 'user1';
+    courses = this.props.courses.map((course, idx) => {
+        return <li className="courses-page__item" key={idx}><Course editCourse={(course: CourseModel)=>this.onEditCourse(course)} course={course}></Course></li>
     })
 
-    return (
-        <article>
-            <Header page='courses-page'>
-                {user}
-            </Header>
-            <div className="courses-page__mid-section">
-                <CourseFilter />
-                <button className="courses-page__delete-course-btn">Delete Course</button>
-            </div>
-            <div>
-                <ul className="courses-page__items">
-                    {courses}
-                </ul>
-            </div>
-        </article>
-    )
+    onEditCourse =(course: CourseModel)=> {
+        this.props.history.push('/edit-course', {state: course})
+    }
+    onDeleteCourse() {
+
+    }
+    onAddCourse= ()=> {
+        this.props.history.push('/edit-course')
+    }
+    onLogout() {
+
+    }
+    render() {
+        return (
+            <article>
+                <Header page='courses-page'>
+                    {this.user}
+                </Header>
+                <div className="courses-page__mid-section">
+                    <CourseFilter />
+                    <button className="courses-page__delete-course-btn" onClick={this.onAddCourse}>Add Course</button>
+                </div>
+                <div>
+                    <ul className="courses-page__items">
+                        {this.courses}
+                    </ul>
+                </div>
+            </article>
+        )
+    }
+
 }
 
-CoursesPage.propType = {
-    courses: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        duration: PropTypes.number,
-        creationDate: PropTypes.instanceOf(Date),
-        description: PropTypes.string
-    }))
-}
+export default withRouter(CoursesPage)

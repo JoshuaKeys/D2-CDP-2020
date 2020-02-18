@@ -1,10 +1,14 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { Header } from '../../../shared/components/header/header.component';
 import { AuthInput } from '../../components/auth-input/auth-Input';
 import './login-page.scss'
 import PropTypes from 'prop-types';
+import { LoginPropsModel } from '../../models/loginprops.model';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { LoginService } from '../../services/login.service';
+import { HttpClient } from '../../../shared/services/httpClient';
 
-export class Login extends React.Component {
+class Login extends React.Component<LoginPropsModel> {
     state = {
         isDisabled: false,
         loginError: '',
@@ -12,8 +16,14 @@ export class Login extends React.Component {
         loginValue: '',
         passwordValue: ''
     }
+
     hasInvalidChars = (value: string)=>{
-        return new RegExp(/[^a-z]/i).test(value);
+        return new RegExp(/[^a-z0-9]/i).test(value);
+    }
+    componentDidMount() {
+        if(this.props.isAuthenticated) {
+            this.props.history.push('/home');
+        }
     }
     validateLogin = (e: ChangeEvent<HTMLInputElement>) =>{
         if(e.target.value === '') {
@@ -45,6 +55,23 @@ export class Login extends React.Component {
             loginValue: e.target.value
         })
     }
+    onLogin = (e: FormEvent<HTMLFormElement>) => {
+        console.log(e);
+        e.preventDefault();
+        var loginPayload = {
+            login: this.state.loginValue,
+            password: this.state.passwordValue
+        }
+        var loginService = new LoginService(new HttpClient())
+        loginService.loginUser(loginPayload).then(
+            response=> {
+                if(response.status === 200) {
+                    localStorage.setItem('user-auth', 'true');
+                    this.props.history.push('/home')
+                }
+            }
+        )
+    }
     
     validatePassword = (e: ChangeEvent<HTMLInputElement>) =>{
         if(e.target.value === '') {
@@ -71,7 +98,7 @@ export class Login extends React.Component {
         return (
             <article className="login-page">
                 <Header></Header>
-                <form className="login-page__form">
+                <form className="login-page__form" onSubmit={this.onLogin}>
                     <div className="login-page__input">
                         <AuthInput 
                             type="text" 
@@ -101,6 +128,5 @@ export class Login extends React.Component {
     }
 
 }
-// Login.propTypes = {
 
-// }
+export default withRouter(Login)

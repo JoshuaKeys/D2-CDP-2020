@@ -1,10 +1,9 @@
 import './App.scss';
 import React from 'react';
 import { Header } from './modules/shared/components/header/header.component';
-import { Login } from './modules/auth-module/pages/login/login-page';
-import { CoursesPage } from './modules/courses/pages/courses/courses-page'
+import CoursesPage  from './modules/courses/pages/courses/courses-page'
 import { CourseModel } from './modules/shared/models/Course.model';
-import { CreateEditPage } from './modules/courses/pages/create-edit/create-edit.component';
+import Routes from './components/routes/Routes';
 export class App extends React.Component {
   courses: CourseModel[] = [
     {
@@ -46,7 +45,8 @@ export class App extends React.Component {
         <div className="app__container">
           {/* <Login></Login> */}
           {/* <CoursesPage courses={this.courses}></CoursesPage> */}
-          <CreateEditPage course={this.courses[0]}></CreateEditPage>
+          {/* <CreateEditPage course={this.courses[0]}></CreateEditPage> */}
+          <Routes courses={this.courses}></Routes>
         </div>
       </article>
     );

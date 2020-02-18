@@ -19,7 +19,7 @@ export function Course(props: CoursePropsModel) {
                 </div>
                 <div className="course__top-section-group course__top-section-group--2">
                     <span>{formatDateData(props.course.creationDate)}</span>
-                    <button className="course__action-btn">Edit Course</button>
+                    <button className="course__action-btn" onClick={()=> props.editCourse(props.course)}>Edit Course</button>
                 </div>
 
             </section>

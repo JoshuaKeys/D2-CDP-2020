@@ -4,6 +4,7 @@ import { Header } from './modules/shared/components/header/header.component';
 import CoursesPage  from './modules/courses/pages/courses/courses-page'
 import { CourseModel } from './modules/shared/models/Course.model';
 import Routes from './components/routes/Routes';
+import { LoginService } from './modules/auth-module/services/login.service';
 export class App extends React.Component {
   courses: CourseModel[] = [
     {
@@ -39,6 +40,17 @@ export class App extends React.Component {
       'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
     }
   ]
+  componentDidMount() {
+    // var loginService = new LoginService(new HttpClient())
+    //     loginService.loginUser(loginPayload).then(
+    //         response=> {
+    //             if(response.status === 200) {
+    //                 localStorage.setItem('user-auth', 'true');
+    //                 this.props.history.push('/home')
+    //             }
+    //         }
+    //     )
+  }
   render() {
     return (
       <article className="app">

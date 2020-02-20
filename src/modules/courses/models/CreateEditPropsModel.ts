@@ -3,5 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 
 export interface CreateEditPropsModel extends RouteComponentProps{
     course?: CourseModel;
-    onSave?: ()=> void;
+    onSave?: () => void;
+    updateCourse: (course: CourseModel) => void;
+    addCourse: (course: CourseModel) => void;
 }

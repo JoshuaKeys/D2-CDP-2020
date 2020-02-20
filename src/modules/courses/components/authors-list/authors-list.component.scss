@@ -1,0 +1,16 @@
+.authors-list {
+    padding: 0;
+    margin: 0;
+    &__item {
+        list-style-type: none;
+        padding: 0;
+        padding: 10px 5px;
+        &:hover {
+            background-color: #999;
+            cursor: pointer;
+        }
+        &-active {
+            background-color: #999;
+        }
+    }
+}

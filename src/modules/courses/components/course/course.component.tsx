@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { CoursePropsModel } from '../../models/CoursePropsModel';
 import { formatDurationData } from '../../../shared/helpers/format-duration-data.helper';
 
-function formatDateData(date: Date) {
-    let dateStr = date.toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/\//g, '-');
+function formatDateData(date: string) {
+    const _date = new Date(date);
+    let dateStr = _date.toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'}).replace(/\//g, '-');
     return dateStr;
 }
 
@@ -25,7 +26,7 @@ export function Course(props: CoursePropsModel) {
             </section>
             <section className="course__bottom-section">
                 <span className="course__description">{props.course.description}</span>
-                <button className="course__action-btn">Delete Course</button>
+                <button className="course__action-btn" onClick={()=> props.deleteCourse(props.course)}>Delete Course</button>
             </section>
         </article>
     )
@@ -35,7 +36,7 @@ Course.propTypes = {
     course: PropTypes.shape({
         title: PropTypes.string,
         duration: PropTypes.number,
-        creationDate: PropTypes.instanceOf(Date),
+        creationDate: PropTypes.string,
         description: PropTypes.string
     })
 }

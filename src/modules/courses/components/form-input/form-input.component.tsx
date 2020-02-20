@@ -7,7 +7,10 @@ export function FormInput (props: FormInputPropsModel) {
     let inputType;
     if(props.type === 'textarea') {
         inputType = <textarea onChange={props.onChange} name={props.name} value={props.value as string}/>
-    }else {
+    }else if(props.type === 'date') {
+        inputType = <input onChange={props.onChange}  type={props.type} name={props.name} value={props.value}/>
+    }
+    else {
         inputType = <input onChange={props.onChange}  type={props.type} name={props.name} value={props.value}/>
     }
     return (

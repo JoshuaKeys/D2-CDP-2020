@@ -18,5 +18,11 @@
         max-width: 800px;
         margin: 30px auto;
     }
+    &__form-error {
+        border: thin solid red;
+        color: red;
+        text-align: center;
+        font-size: 1.5em;
+    }
     
 }

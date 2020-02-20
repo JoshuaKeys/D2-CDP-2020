@@ -1,52 +1,56 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import { Header } from '../../../shared/components/header/header.component'
 import { CoursesPropsModel } from '../../models/CoursesPropsModel';
 import { Course } from '../../components/course/course.component';
 import { CourseFilter } from '../../components/course-filter/course-filter.component';
-import PropTypes from 'prop-types';
 import './courses-page.scss';
 import { CourseModel } from '../../../shared/models/Course.model';
 import { withRouter } from 'react-router-dom';
 
 class CoursesPage extends Component<CoursesPropsModel> {
-    static propType = {
-        courses: PropTypes.arrayOf(PropTypes.shape({
-            title: PropTypes.string,
-            duration: PropTypes.number,
-            creationDate: PropTypes.instanceOf(Date),
-            description: PropTypes.string
-        }))
-    }
     user = 'user1';
-    courses = this.props.courses.map((course, idx) => {
-        return <li className="courses-page__item" key={idx}><Course editCourse={(course: CourseModel)=>this.onEditCourse(course)} course={course}></Course></li>
-    })
-
-    onEditCourse =(course: CourseModel)=> {
-        this.props.history.push('/edit-course', {state: course})
+    courses: CourseModel[] = [];
+    state = {
+        filter: ''
     }
-    onDeleteCourse() {
-
+    onEditCourse = (course: CourseModel) => {
+        this.props.history.push('/edit-course', { state: { course, authors: this.props.authors } })
     }
-    onAddCourse= ()=> {
-        this.props.history.push('/edit-course')
+    onFilterCourses = (filter: string) => {
+        this.setState({ filter });
+    }
+    onAddCourse = () => {
+        this.props.history.push('/edit-course', { state: {authors: this.props.authors}})
     }
     onLogout() {
 
     }
     render() {
+        let courses;
+        if (this.props.courses) {
+            courses = this.props.courses.filter((course, idx) => {//courses.filter((course, idx)=>{
+                return course.title.search(this.state.filter) > -1 ? true : false;
+            }).map((course, idx) => {
+                return <li className="courses-page__item" key={idx}>
+                    <Course
+                        deleteCourse={(course: CourseModel) => this.props.deleteCourse(course)}
+                        editCourse={(course: CourseModel) => this.onEditCourse(course)}
+                        course={course}></Course></li>
+            })
+        }
+
         return (
             <article>
                 <Header page='courses-page'>
                     {this.user}
                 </Header>
                 <div className="courses-page__mid-section">
-                    <CourseFilter />
+                    <CourseFilter onFilter={(filter) => this.onFilterCourses(filter)} />
                     <button className="courses-page__delete-course-btn" onClick={this.onAddCourse}>Add Course</button>
                 </div>
                 <div>
                     <ul className="courses-page__items">
-                        {this.courses}
+                        {courses}
                     </ul>
                 </div>
             </article>

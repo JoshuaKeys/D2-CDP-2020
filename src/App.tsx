@@ -2,102 +2,75 @@ import './App.scss';
 import React from 'react';
 import { CourseModel } from './modules/shared/models/Course.model';
 import { Routes } from './components/routes/Routes';
-import { CourseService } from './modules/courses/services/course.service';
-import { HttpClient } from './modules/shared/services/httpClient';
-import { AuthorsService } from './modules/courses/services/authors.service';
-import { AuthorModel } from './modules/shared/models/Author.model';
-import { AppState } from './models/app-state.model';
-export class App extends React.Component<{}, AppState> {
-  componentDidMount = () => {
-    var coursesService = new CourseService(new HttpClient());
-    var authorsService = new AuthorsService(new HttpClient());
-    coursesService.getCourses<CourseModel[]>().then(({ body }) => {
-      this.setState({
-        ...this.state,
-        courses: {
-          ...this.state,
-          authors: this.state && this.state.courses ? this.state.courses.authors : [],
-          courses: [...body],
-        }
+import { AppState, MatchParams } from './models/app-state.model';
+import { connect, ConnectedProps } from 'react-redux';
+import { loadCourses, addCourse, deleteCourse, updateCourse } from './modules/courses/redux/actions'
+import { RouteChildrenProps, withRouter } from 'react-router-dom';
+import { match } from 'react-router';
+import { checkLogin, loginUser, logoutUser } from './modules/auth-module/redux/actions'
+import { LoginFormModel } from './modules/auth-module/models/login-form.model';
 
-      })
-    });
-    authorsService.getAuthors<AuthorModel[]>().then(({body})=>{
-      const state = {
-        courses: {
-          ...this.state,
-          authors: [...body],
-          courses: this.state && this.state.courses ? this.state.courses.courses : []
-        }
-      }
-      this.setState({
-        ...this.state,
-        ...state
-      })
-    })
+const mapState = (state: AppState) => ({
+  courses: state.courses,
+  auth: state.auth
+});
+const mapDispatch = {
+  loadCourses,
+  checkLogin,
+  loginUser,
+  addCourse,
+  deleteCourse,
+  updateCourse,
+  logoutUser
+}
+const connector = connect(
+  mapState,
+  mapDispatch
+)
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type Props = PropsFromRedux & RouteChildrenProps<MatchParams>;
+
+export class App extends React.Component<Props, AppState> {
+  componentDidMount = () => {
+    this.props.checkLogin();
   }
   onUpdateCourse(course: CourseModel) {
-    var courseService = new CourseService(new HttpClient())
-    courseService.updateCourse(course).then(
-        response => {
-            if (response.status === 200) {
-              const courses = [...this.state.courses?.courses as CourseModel[]].map(item=> {
-                if(item.id === course.id) {
-                  return course;
-                }else {
-                  return item;
-                }
-              })
-              this.setState({
-                courses: {
-                  ...this.state,
-                  ...this.state.courses,
-                  courses
-                }
-              })
-            }
-        }
-    )
+    this.props.updateCourse(course);
   }
   onAddCourse(course: CourseModel) {
-    var coursesService = new CourseService(new HttpClient());
-    coursesService.addCourse<CourseModel>(course).then(({body}) => {
-      let updatedCourses = [...this.state.courses?.courses as CourseModel[]];
-      updatedCourses.push(body)
-      this.setState({
-        ...this.state,
-        courses: {
-          ...this.state,
-          authors: this.state && this.state.courses ? this.state.courses.authors : [],
-          courses: [...updatedCourses],
-        }
-
-      })
-    });
+    this.props.addCourse({...course, history: this.props.history});
+  }
+  getCourses() {
+    this.props.loadCourses();
   }
   onDeleteCourse(course: CourseModel) {
-    var coursesService = new CourseService(new HttpClient());
-    coursesService.deleteCourse<{}>(course).then(() => {
-      let updatedCourses = [...this.state.courses?.courses as CourseModel[]];
-      let courseIdx = updatedCourses.findIndex(item=> item.id === course.id);
-      updatedCourses.splice(courseIdx, 1)
-      this.setState({
-        ...this.state,
-        courses: {
-          ...this.state,
-          authors: this.state && this.state.courses ? this.state.courses.authors : [],
-          courses: [...updatedCourses],
-        }
-
-      })
-    });
+    this.props.deleteCourse(course);
+  }
+  onLogin = (loginPayload: LoginFormModel) => {
+    this.props.loginUser({...loginPayload, history: this.props.history});
+  }
+  onLogout = ()=>{
+    const history = this.props.history
+    this.props.logoutUser(history);
   }
   render() {
+    const _match = this.props.match as match<MatchParams>;
+    const state: AppState = {
+      ...this.props,
+      auth: this.props.auth,
+      match: _match,
+      courses: {
+        courses: this.props.courses?.courses,
+        authors: this.props.courses?.authors
+      }
+    }
     return (
       <article className="app">
         <div className="app__container">
           <Routes 
-            state={this.state}
+            logout={this.onLogout}
+            state={state}
+            login={(loginPayload)=> this.onLogin(loginPayload)}
             updateCourse={(course: CourseModel)=> this.onUpdateCourse(course)}
             deleteCourse={(course: CourseModel)=> this.onDeleteCourse(course)}
             addCourse={(course: CourseModel)=> this.onAddCourse(course)}></Routes>
@@ -107,4 +80,4 @@ export class App extends React.Component<{}, AppState> {
   }
 }
 
-export default App;
+export default withRouter(connector(App));

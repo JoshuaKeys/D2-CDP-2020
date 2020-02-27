@@ -39,10 +39,14 @@ export class CourseService {
         const headers = new Headers({
             'Content-Type': 'application/json',
         })
+        const _course = {...course};
+        if('id' in course) {
+            delete _course.id
+        }
         const req = new Request('http://localhost:3001/api/courses', {
             method: 'POST',
             headers,
-            body: JSON.stringify(course)
+            body: JSON.stringify(_course)
         })
         return this.httpClient.request<T>(req);
     }

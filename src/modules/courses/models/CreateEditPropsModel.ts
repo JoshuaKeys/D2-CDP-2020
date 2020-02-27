@@ -6,4 +6,5 @@ export interface CreateEditPropsModel extends RouteComponentProps{
     onSave?: () => void;
     updateCourse: (course: CourseModel) => void;
     addCourse: (course: CourseModel) => void;
+    logout: ()=> void;
 }

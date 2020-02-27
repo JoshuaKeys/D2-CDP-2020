@@ -6,5 +6,6 @@ export interface CourseModel {
     duration: number;
     creationDate: string;
     description: string;
-    authors: AuthorModel[]
+    authors: AuthorModel[];
+    history?: any
 }

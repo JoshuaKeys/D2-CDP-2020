@@ -4,4 +4,5 @@ export interface HeaderPropsModel {
     page?: string;
     course?: CourseModel;
     children?: string;
+    logout?: ()=> void;
 }

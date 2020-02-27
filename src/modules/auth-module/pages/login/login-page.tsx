@@ -2,13 +2,11 @@ import React, { ChangeEvent, FormEvent } from 'react';
 import { Header } from '../../../shared/components/header/header.component';
 import { AuthInput } from '../../components/auth-input/auth-Input';
 import './login-page.scss'
-import PropTypes from 'prop-types';
 import { LoginPropsModel } from '../../models/loginprops.model';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { LoginService } from '../../services/login.service';
-import { HttpClient } from '../../../shared/services/httpClient';
+import { withRouter } from 'react-router';
 
 class Login extends React.Component<LoginPropsModel> {
+    
     state = {
         isDisabled: false,
         loginError: '',
@@ -56,21 +54,12 @@ class Login extends React.Component<LoginPropsModel> {
         })
     }
     onLogin = (e: FormEvent<HTMLFormElement>) => {
-        console.log(e);
         e.preventDefault();
         var loginPayload = {
             login: this.state.loginValue,
-            password: this.state.passwordValue
+            password: this.state.passwordValue,
         }
-        var loginService = new LoginService(new HttpClient())
-        loginService.loginUser(loginPayload).then(
-            response=> {
-                if(response.status === 200) {
-                    localStorage.setItem('user-auth', 'true');
-                    this.props.history.push('/home')
-                }
-            }
-        )
+        this.props.login(loginPayload);
     }
     
     validatePassword = (e: ChangeEvent<HTMLInputElement>) =>{

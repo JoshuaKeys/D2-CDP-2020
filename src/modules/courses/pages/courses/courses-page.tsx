@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component } from 'react';
 import { Header } from '../../../shared/components/header/header.component'
 import { CoursesPropsModel } from '../../models/CoursesPropsModel';
 import { Course } from '../../components/course/course.component';
@@ -20,10 +20,7 @@ class CoursesPage extends Component<CoursesPropsModel> {
         this.setState({ filter });
     }
     onAddCourse = () => {
-        this.props.history.push('/edit-course', { state: {authors: this.props.authors}})
-    }
-    onLogout() {
-
+        this.props.history.push('/edit-course', { state: { authors: this.props.authors } })
     }
     render() {
         let courses;
@@ -41,7 +38,7 @@ class CoursesPage extends Component<CoursesPropsModel> {
 
         return (
             <article>
-                <Header page='courses-page'>
+                <Header page='courses-page' logout={this.props.logout}>
                     {this.user}
                 </Header>
                 <div className="courses-page__mid-section">

@@ -10,7 +10,7 @@ function Header(props: HeaderPropsModel) {
         projectedContent = (
             <nav className="header__nav">
                 <span className="header__user-name">{props.children}</span>
-                <a href="#">Logout</a>
+                <a href="#" onClick={props.logout}>Logout</a>
             </nav>
         );
     }
@@ -26,7 +26,7 @@ function Header(props: HeaderPropsModel) {
                 <div className="header__breadcrumb"><NavLink to="/home">Courses</NavLink> > {course}</div>
                 <nav className="header__nav">
                     <span className="header__user-name">{props.children}</span>
-                    <a href="#">Logout</a>
+                    <a href="#" onClick={props.logout}>Logout</a>
                 </nav>
             </div>
 
@@ -37,7 +37,7 @@ function Header(props: HeaderPropsModel) {
             <div className="header__container">
                 <NavLink to="/home">
                     <div className="header__logo-container">
-                        <img className="header__logo" src="/logo.png" />
+                        <img alt="avatar" className="header__logo" src="/logo.png" />
                         <h1 className="header__logo-text">Logo</h1>
                     </div>
                 </NavLink>
@@ -47,7 +47,6 @@ function Header(props: HeaderPropsModel) {
         </header>
     )
 }
-
 
 Header.propTypes = {
     page: PropTypes.string,

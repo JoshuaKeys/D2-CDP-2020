@@ -1,6 +1,5 @@
 import React from 'react';
 import './course-filter.component.scss'
-import { CourseModel } from '../../../shared/models/Course.model';
 import { CourseFilterPropsModel } from '../../models/CourseFilterPropsModel';
 
 export function CourseFilter(props: CourseFilterPropsModel) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { TransferListPropsModel } from '../../models/TransferListPropsModel';
 import './transfer-list.component.scss'
 import { AuthorsList } from '../authors-list/authors-list.component';
-import { render } from '@testing-library/react';
 import { AuthorModel } from '../../../shared/models/Author.model';
 
 

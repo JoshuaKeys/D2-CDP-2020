@@ -3,7 +3,6 @@ import './auth-input.scss';
 import { Input } from '../../models/input.model';
 import PropTypes from 'prop-types';
 export function AuthInput(props: Input) {
-    console.log(props.fieldError)
     const classes = ['auth-input__input-field'];
     if(props.fieldError !== '') {
         classes.push('auth-input__has-error')

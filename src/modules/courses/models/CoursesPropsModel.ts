@@ -7,5 +7,5 @@ export interface CoursesPropsModel extends RouteComponentProps<any>{
     courses: Array<CourseModel>;
     authors?: AuthorModel[];
     deleteCourse: (course: CourseModel)=> void;
-    // isAuthenticated: boolean;
+    logout: ()=> void;
 }

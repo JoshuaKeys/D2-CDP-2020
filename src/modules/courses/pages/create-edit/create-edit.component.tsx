@@ -1,4 +1,4 @@
-import React, { Props, ChangeEvent, FormEvent, MouseEvent } from 'react';
+import React, { ChangeEvent, FormEvent, MouseEvent } from 'react';
 import { Header } from '../../../shared/components/header/header.component';
 import { CreateEditPropsModel } from '../../models/CreateEditPropsModel';
 import { FormInput } from '../../components/form-input/form-input.component';
@@ -9,8 +9,6 @@ import { withRouter } from 'react-router-dom';
 import { DateFormatter } from '../../../shared/services/date-formater';
 import { CoursePropsModel } from '../../models/CoursePropsModel';
 import { AuthorModel } from '../../../shared/models/Author.model';
-import { CourseService } from '../../services/course.service';
-import { HttpClient } from '../../../shared/services/httpClient';
 import { CourseModel } from '../../../shared/models/Course.model';
 
 class CreateEditPage extends React.Component<CreateEditPropsModel, CoursePropsModel>{
@@ -122,7 +120,7 @@ class CreateEditPage extends React.Component<CreateEditPropsModel, CoursePropsMo
         e.preventDefault();
         if (this.mode === 'add') {
             const error = this.validateCourseInputs(this.state.course)
-            if (error.error == undefined) {
+            if (error.error === undefined) {
                 this.props.addCourse(this.state.course);
             } else {
                 this.setState({
@@ -149,7 +147,7 @@ class CreateEditPage extends React.Component<CreateEditPropsModel, CoursePropsMo
   
         return (
             <article className="create-edit">
-                <Header page="create-edit-page" course={this.state.course}>
+                <Header page="create-edit-page" logout={this.props.logout} course={this.state.course}>
                     {this.user}
                 </Header>
                 <form className="create-edit__form" onSubmit={this.onSubmit}>

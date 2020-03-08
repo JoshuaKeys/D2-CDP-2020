@@ -26,12 +26,14 @@ const mapState = (state: AppState) => ({
 export const withBusinessLogic = (WrappedComponent: any) => {
     class HOC extends React.Component<any, any> {
         onUpdateCourse(course: CourseModel) {
+            console.log(this.props);
             this.props.updateCourse(course);
         }
         onAddCourse(course: CourseModel) {
             this.props.addCourse({ ...course, history: this.props.history });
         }
         getCourses() {
+            console.log('Yeahhhh')
             this.props.loadCourses();
         }
         onDeleteCourse(course: CourseModel) {
@@ -60,4 +62,4 @@ export const withBusinessLogic = (WrappedComponent: any) => {
     }
     return connector(HOC);
 }
-// export default connector(withBusinessLogic)
+export default withBusinessLogic;

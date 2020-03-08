@@ -4,10 +4,10 @@ import { CourseModel } from './modules/shared/models/Course.model';
 import { Routes } from './components/routes/Routes';
 import { AppState, MatchParams } from './models/app-state.model';
 import { ConnectedProps } from 'react-redux';
-// import { loadCourses, addCourse, deleteCourse, updateCourse } from './modules/courses/redux/actions'
+import { loadCourses, addCourse, deleteCourse, updateCourse } from './modules/courses/redux/actions'
 import { RouteChildrenProps, withRouter } from 'react-router-dom';
 import { match } from 'react-router';
-// import { checkLogin, loginUser, logoutUser } from './modules/auth-module/redux/actions'
+import { checkLogin, loginUser, logoutUser } from './modules/auth-module/redux/actions'
 // import { LoginFormModel } from './modules/auth-module/models/login-form.model';
 import { withBusinessLogic, connector } from './hocs/withBusinessLogic';
 import { HocPropsModel } from './models/HocProps.model';

@@ -3,32 +3,32 @@ import React from 'react';
 import { CourseModel } from './modules/shared/models/Course.model';
 import { Routes } from './components/routes/Routes';
 import { AppState, MatchParams } from './models/app-state.model';
-import { connect, ConnectedProps } from 'react-redux';
-import { loadCourses, addCourse, deleteCourse, updateCourse } from './modules/courses/redux/actions'
+import { ConnectedProps } from 'react-redux';
+// import { loadCourses, addCourse, deleteCourse, updateCourse } from './modules/courses/redux/actions'
 import { RouteChildrenProps, withRouter } from 'react-router-dom';
 import { match } from 'react-router';
-import { checkLogin, loginUser, logoutUser } from './modules/auth-module/redux/actions'
-import { LoginFormModel } from './modules/auth-module/models/login-form.model';
-import { withBusinessLogic } from './hocs/withBusinessLogic';
+// import { checkLogin, loginUser, logoutUser } from './modules/auth-module/redux/actions'
+// import { LoginFormModel } from './modules/auth-module/models/login-form.model';
+import { withBusinessLogic, connector } from './hocs/withBusinessLogic';
 import { HocPropsModel } from './models/HocProps.model';
 
-const mapState = (state: AppState) => ({
-  courses: state.courses,
-  auth: state.auth
-});
-const mapDispatch = {
-  loadCourses,
-  checkLogin,
-  loginUser,
-  addCourse,
-  deleteCourse,
-  updateCourse,
-  logoutUser
-}
-const connector = connect(
-  mapState,
-  mapDispatch
-)
+// const mapState = (state: AppState) => ({
+//   courses: state.courses,
+//   auth: state.auth
+// });
+// const mapDispatch = {
+//   loadCourses,
+//   checkLogin,
+//   loginUser,
+//   addCourse,
+//   deleteCourse,
+//   updateCourse,
+//   logoutUser
+// }
+// const connector = connect(
+//   mapState,
+//   mapDispatch
+// )
 // type PropsFromHOC = 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & RouteChildrenProps<MatchParams> & HocPropsModel;

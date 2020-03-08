@@ -18,7 +18,7 @@ const mapState = (state: AppState) => ({
     updateCourse,
     logoutUser
   }
-  const connector = connect(
+  export const connector = connect(
     mapState,
     mapDispatch
   )

@@ -7,18 +7,17 @@
   ],
   "courses": [
     {
-      "id": "zxhzzhretn",
-      "title": "Become a Representative",
-      "creationDate": "2019-09-24T18:44:10.952Z",
-      "duration": 100,
-      "description": "maiores sint mollitia praesentium sint ea qui sed facilis sint quidem in aliquid nobis quia ut voluptatem velit rerum debitis sit iusto ad iusto accusantium tempora necessitatibus dolores animi placeat voluptates nam cumque odio dolores corrupti repellat quis sint at id ex excepturi eos impedit et architecto perferendis ea quis"
-    },
-    {
       "id": "dr98h4kvbx",
       "title": "Become a Orchestrator",
       "creationDate": "2019-10-18T09:33:36.286Z",
       "duration": 96,
-      "description": "reiciendis blanditiis et molestiae est omnis ab fugiat sint quos vel dolorem qui officia sed ut ut et quis doloribus nihil nesciunt voluptatem ipsum voluptatem repellendus iste ratione laboriosam quia accusamus qui quae iusto ipsa ut sint labore soluta aut repellat velit excepturi aut explicabo saepe officia neque nisi at"
+      "description": "reiciendis blanditiis et molestiae est omnis ab fugiat sint quos vel dolorem qui officia sed ut ut et quis doloribus nihil nesciunt voluptatem ipsum voluptatem repellendus iste ratione laboriosam quia accusamus qui quae iusto ipsa ut sint labore soluta aut repellat velit excepturi aut explicabo saepe officia neque nisi at",
+      "authors": [
+        {
+          "id": "vjy43pr77r",
+          "name": "Efren Blick"
+        }
+      ]
     },
     {
       "id": "vgz2sd83ew",
@@ -68,13 +67,6 @@
       "creationDate": "2019-10-09T19:47:40.405Z",
       "duration": 51,
       "description": "et qui quo harum quisquam excepturi commodi libero ratione doloremque eum qui molestias et et repudiandae dolores ad autem expedita in illo suscipit voluptates qui et sit tempora in blanditiis assumenda cumque sit id quia possimus nulla qui quidem vel soluta accusantium nobis ad velit ullam provident alias voluptas at"
-    },
-    {
-      "id": "6ie4peirs4",
-      "title": "Become a Director",
-      "creationDate": "2019-09-15T11:41:42.560Z",
-      "duration": 267,
-      "description": "accusantium aut omnis illum ut explicabo nihil nisi esse aut ipsam omnis dolorem quidem minima rem est quisquam est quos est magni minus in officia eius fugit aut quia soluta numquam deleniti consequuntur veritatis et voluptatum laborum saepe ea quibusdam eligendi eius temporibus odio accusantium nulla dolor ipsum consequatur consectetur"
     },
     {
       "id": "a7cl47wfgd",

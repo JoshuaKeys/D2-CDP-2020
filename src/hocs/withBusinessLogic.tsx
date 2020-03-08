@@ -5,9 +5,12 @@ import { loadCourses, addCourse, deleteCourse, updateCourse } from '../modules/c
 import { checkLogin, loginUser, logoutUser } from '../modules/auth-module/redux/actions'
 import { AppState } from '../models/app-state.model';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { coursesStateSelector } from '../modules/courses/redux/reducer';
+import { authStateSelector } from '../modules/auth-module/redux/reducer';
 const mapState = (state: AppState) => ({
-    courses: state.courses,
-    auth: state.auth
+    courses: coursesStateSelector(state),
+    auth: authStateSelector(state)
   });
   const mapDispatch = {
     loadCourses,
@@ -25,21 +28,21 @@ const mapState = (state: AppState) => ({
 
 export const withBusinessLogic = (WrappedComponent: any) => {
     class HOC extends React.Component<any, any> {
-        onUpdateCourse(course: CourseModel) {
+        onUpdateCourse = (course: CourseModel)=> {
             console.log(this.props);
             this.props.updateCourse(course);
         }
-        onAddCourse(course: CourseModel) {
+        onAddCourse = (course: CourseModel) => {
             this.props.addCourse({ ...course, history: this.props.history });
         }
-        getCourses() {
-            console.log('Yeahhhh')
+        getCourses = () =>{
             this.props.loadCourses();
         }
-        onDeleteCourse(course: CourseModel) {
+        onDeleteCourse =(course: CourseModel)=> {
             this.props.deleteCourse(course);
         }
         onLogin = (loginPayload: LoginFormModel) => {
+            
             this.props.loginUser({ ...loginPayload, history: this.props.history });
         }
         onLogout = () => {
@@ -62,4 +65,4 @@ export const withBusinessLogic = (WrappedComponent: any) => {
     }
     return connector(HOC);
 }
-export default withBusinessLogic;
+export default compose(connector, withBusinessLogic);

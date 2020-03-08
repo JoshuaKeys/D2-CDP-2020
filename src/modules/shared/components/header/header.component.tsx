@@ -53,7 +53,7 @@ Header.propTypes = {
     course: PropTypes.shape({
         title: PropTypes.string,
         duration: PropTypes.number,
-        creationDate: PropTypes.instanceOf(Date),
+        creationDate: PropTypes.string,
         description: PropTypes.string,
     }),
     children: PropTypes.string

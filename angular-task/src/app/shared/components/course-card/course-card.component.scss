@@ -1,0 +1,41 @@
+.course {
+  &__top-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  &__bottom-section {
+      display: flex;
+      justify-content: space-between;
+  }
+  &__heading {
+      margin: 0;
+      margin-right: 10px;
+      font-size: 1.5em;
+  }
+  &__top-section-group {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-width: 250px;
+      margin-bottom: 10px;
+  }
+  // &__top-section-group--1 {
+  //     min-width: 250px;
+  // }
+  // &__top-section-group--2 {
+  //     min-width: 250px;
+  // }
+  &__description {
+      max-width: 80%;
+  }
+  &__action-btn {
+      width: 150px;
+      height: 30px;
+      background-color: transparent;
+  }
+  border: thin solid black;
+  margin-bottom: 20px;
+  padding: 10px 20px 20px;
+}

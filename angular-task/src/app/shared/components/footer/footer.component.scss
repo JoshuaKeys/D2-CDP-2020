@@ -1,0 +1,16 @@
+.footer {
+  border: thin solid black;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  &__items {
+    padding: 0;
+    display: flex;
+    min-width: 500px;
+    justify-content: space-between;
+    margin: 0;
+  }
+  &__item {
+    list-style-type: none;
+  }
+}

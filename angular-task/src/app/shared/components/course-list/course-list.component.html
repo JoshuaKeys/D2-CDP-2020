@@ -1,0 +1,9 @@
+<section class="course-list">
+  <ul class="course-list__items" *ngIf="courses | async">
+    <li class="course-list__item" *ngFor="let course of (courses | async)">
+      <app-course-card
+        [course]="course"
+      ></app-course-card>
+    </li>
+  </ul>
+</section>

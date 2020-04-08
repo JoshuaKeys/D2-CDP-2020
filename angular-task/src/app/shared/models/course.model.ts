@@ -4,4 +4,5 @@ export class CourseModel {
   creationDate: string;
   duration: number;
   description: string;
+  authors?: Array<string>;
 }

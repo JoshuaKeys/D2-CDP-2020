@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { TransferListComponent } from './components/transfer-list/transfer-list.component';
+import { AuthorsListComponent } from './components/authors-list/authors-list.component';
 
 
 
 @NgModule({
-  declarations: [EditCourseComponent],
+  declarations: [EditCourseComponent, TransferListComponent, AuthorsListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
+  ],
+  exports: [
+    EditCourseComponent
   ]
 })
 export class EditCourseModule { }

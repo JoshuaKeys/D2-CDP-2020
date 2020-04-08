@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CourseModel } from '../../models/course.model';
 
 @Component({
   selector: 'app-navigation',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-
+  @Input('course') course: CourseModel;
+  @Input('showMid') showMid: boolean;
+  @Input('hideNav') hideNav: boolean;
   constructor() { }
 
   ngOnInit() {

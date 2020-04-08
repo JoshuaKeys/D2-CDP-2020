@@ -6,8 +6,10 @@
               <h1 class="header__logo-text">Logo</h1>
           </div>
         </a>
-
-      <div class="header__nav-container">
+        <div class="header__mid-section" *ngIf="showMid">
+          <a href="#">Courses</a> > <ng-content></ng-content>
+        </div>
+      <div class="header__nav-container" *ngIf="!hideNav">
         <div class="header__breadcrumb"></div>
         <nav class="header__nav">
             <span class="header__user-name">user1</span>

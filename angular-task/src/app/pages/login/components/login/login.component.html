@@ -1,1 +1,27 @@
-<p>login works!</p>
+<app-navigation [hideNav]="true"></app-navigation>
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div class="table">
+    <div class="table__row">
+      <span class="table__column">Login</span>
+      <span class="table__column" >
+        <input
+          [ngClass]="{'invalid': loginForm.get('login').invalid && loginForm.get('login').dirty}"
+          formControlName="login">
+          <span class="invalid-message" *ngIf="loginForm.get('login').invalid && loginForm.get('login').dirty">* enter</span>
+        </span>
+    </div>
+    <div class="table__row">
+      <span class="table__column">Password</span>
+      <span class="table__column">
+        <input
+          formControlName="password"
+          [ngClass]="{'invalid': loginForm.get('password').invalid && loginForm.get('password').dirty}">
+          <span class="invalid-message" *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">* incorrect</span>
+          <div class="login-form__submit-btn-container">
+            <button [disabled]="loginForm.invalid" type="submit">Login</button>
+          </div>
+        </span>
+
+    </div>
+  </div>
+</form>

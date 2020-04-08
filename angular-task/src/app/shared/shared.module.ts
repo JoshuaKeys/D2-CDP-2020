@@ -7,6 +7,8 @@ import { CoursesService } from "./services/courses/courses.service";
 import { CommonModule } from "@angular/common";
 import { NumberToTimePipe } from "./pipes/number-to-time-pipe.pipe";
 import { ModalWindowComponent } from "./components/modal-window/modal-window.component";
+import { SearchComponent } from './components/search/search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,10 @@ import { ModalWindowComponent } from "./components/modal-window/modal-window.com
     NavigationComponent,
     FooterComponent,
     NumberToTimePipe,
-    NumberToTimePipe,
     ModalWindowComponent,
+    SearchComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
     CourseCardComponent,
     CourseListComponent,
@@ -26,6 +28,8 @@ import { ModalWindowComponent } from "./components/modal-window/modal-window.com
     FooterComponent,
     NumberToTimePipe,
     ModalWindowComponent,
+    SearchComponent,
+    ReactiveFormsModule
   ],
   providers: [CoursesService],
 })

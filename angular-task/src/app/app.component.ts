@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-task';
-  isModalOpen = true;
+  isModalOpen = false;
   onModalClosed() {
     this.isModalOpen = false;
   }

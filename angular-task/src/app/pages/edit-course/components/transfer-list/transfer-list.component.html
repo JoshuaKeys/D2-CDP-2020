@@ -1,0 +1,17 @@
+<div class="transfer-list">
+  <div class="transfer-list__left-panel">
+    <app-authors-list
+      (itemSelected)="leftItemSelected($event)"
+      [items]="leftItems"
+      [activeItem]="selectedItem"></app-authors-list>
+  </div>
+  <div class="transfer-list__mid-panel">
+    <button type="button" (click)="add()">></button>
+    <button type="button" (click)="remove()"><</button>
+  </div>
+  <div class="transfer-list__right-panel" [ngClass]="{'invalid': form.get('authors').invalid && form.get('authors').dirty}">
+    <app-authors-list (itemSelected)="rightItemSelected($event)"
+      [activeItem]="selectedItem"
+      [items]="rightItems"></app-authors-list>
+  </div>
+</div>

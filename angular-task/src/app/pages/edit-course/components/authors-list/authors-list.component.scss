@@ -1,0 +1,12 @@
+.authors-list {
+  padding: 0;
+  margin: 0;
+  &__item {
+    list-style-type: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    &--selected {
+      background-color: rgba(0,0,0, 0.5)
+    }
+  }
+}

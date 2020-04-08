@@ -5,7 +5,7 @@
   }
   &__items {
       padding: 0;
-      margin: 0;
+      margin: 20px 0;
   }
   &__mid-section {
       margin: 40px 0;
@@ -17,5 +17,14 @@
       // margin-right: 20px;
       height: 30px;
       background-color: transparent;
+  }
+  &__top-field {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__add-course-btn {
+    width: 150px;
+    background-color: transparent;
+    height: 30px;
   }
 }

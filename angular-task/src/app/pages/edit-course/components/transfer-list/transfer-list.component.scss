@@ -1,0 +1,23 @@
+.transfer-list {
+  display: flex;
+  justify-content: space-between;
+  &__left-panel,
+  &__right-panel {
+    border: thin solid rgb(216, 216, 216);
+    height: 300px;
+    flex: 1;
+  }
+  &__mid-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    button {
+      padding: 15px;
+      background: transparent;
+      margin: 20px;
+    }
+  }
+  .invalid {
+    border: thin solid red;
+  }
+}

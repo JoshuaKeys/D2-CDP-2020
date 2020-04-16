@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CourseModel } from '../../models/course.model';
 
 
 @Component({
@@ -9,8 +10,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ModalWindowComponent implements OnInit {
   @Input('title') title: string;
   @Input('message') message: string;
+  @Input('isOpen') isOpen: boolean;
   @Output('close') onModalClosed = new EventEmitter<any>();
-  @Output('confirm') onModalConfirmed = new EventEmitter<any>();
+  @Output('confirm') onModalConfirmed = new EventEmitter<CourseModel>();
   constructor() { }
   closeModal() {
     this.onModalClosed.emit();
@@ -20,5 +22,4 @@ export class ModalWindowComponent implements OnInit {
   }
   ngOnInit() {
   }
-
 }

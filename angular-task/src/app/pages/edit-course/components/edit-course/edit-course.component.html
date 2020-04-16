@@ -1,49 +1,52 @@
-<app-navigation [showMid]="true">
-  {{course ? course.title: 'New Course'}}
-</app-navigation>
-<form class="edit-form" [formGroup]="editForm" (ngSubmit)="onEditForm()">
-  <div class="table">
-    <div class="table__row">
-      <span class="table__column">Title</span>
-      <span class="table__column" >
-        <input class="title"
-          [ngClass]="{'invalid': editForm.get('title').invalid && editForm.get('title').dirty}"
-          formControlName="title"></span>
-    </div>
-    <div class="table__row">
-      <span class="table__column">Description</span>
-      <span class="table__column">
-        <textarea
-          class="description"
-          formControlName="description"
-          [ngClass]="{'invalid': editForm.get('description').invalid && editForm.get('description').dirty}"></textarea></span>
-    </div>
-    <div class="table__row">
-      <span class="table__column">Creation Date</span>
-      <span class="table__column">
-        <input
-          type="date" formControlName="creationDate"
-          [ngClass]="{'invalid': editForm.get('creationDate').invalid && editForm.get('creationDate').dirty}"
-        ></span>
-    </div>
-    <div class="table__row">
-      <span class="table__column">Duration</span>
-      <span class="table__column">
-        <input
-          formControlName="duration"
-          [ngClass]="{'invalid': editForm.get('duration').invalid && editForm.get('duration').dirty}">
-        <span>{{editForm.get('duration').value | numberToTime}}</span></span>
-    </div>
-    <div class="table__row">
-      <span class="table__column">List of Authors</span>
-      <span class="table__column">
-        <app-transfer-list [form]="editForm" [allAuthors]="allAuthors" formControlName="authors"></app-transfer-list>
-        <div class="editForm__controls">
-          <button type="submit" [disabled]="editForm.invalid">Save</button><button type="reset">Cancel</button>
-        </div>
-      </span>
-    </div>
+<div *ngIf="isReady">
+  <app-navigation [showMid]="true">
+    {{course ? course.title: 'New Course'}}
+  </app-navigation>
+  <form class="edit-form" [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+    <div class="table">
+      <div class="table__row">
+        <span class="table__column">Title</span>
+        <span class="table__column" >
+          <input class="title"
+            [ngClass]="{'invalid': editForm.get('title').invalid && editForm.get('title').dirty}"
+            formControlName="title"></span>
+      </div>
+      <div class="table__row">
+        <span class="table__column">Description</span>
+        <span class="table__column">
+          <textarea
+            class="description"
+            formControlName="description"
+            [ngClass]="{'invalid': editForm.get('description').invalid && editForm.get('description').dirty}"></textarea></span>
+      </div>
+      <div class="table__row">
+        <span class="table__column">Creation Date</span>
+        <span class="table__column">
+          <input
+            type="date" formControlName="creationDate"
+            [ngClass]="{'invalid': editForm.get('creationDate').invalid && editForm.get('creationDate').dirty}"
+          ></span>
+      </div>
+      <div class="table__row">
+        <span class="table__column">Duration</span>
+        <span class="table__column">
+          <input
+            formControlName="duration"
+            [ngClass]="{'invalid': editForm.get('duration').invalid && editForm.get('duration').dirty}">
+          <span>{{editForm.get('duration').value | numberToTime}}</span></span>
+      </div>
+      <div class="table__row">
+        <span class="table__column">List of Authors</span>
+        <span class="table__column">
+          <app-transfer-list [form]="editForm" [allAuthors]="allAuthors" formControlName="authors"></app-transfer-list>
+          <div class="editForm__controls">
+            <button type="submit" [disabled]="editForm.invalid">Save</button><button type="reset">Cancel</button>
+          </div>
+        </span>
+      </div>
 
-  </div>
-</form>
-<app-footer></app-footer>
+    </div>
+  </form>
+  <app-footer></app-footer>
+
+</div>

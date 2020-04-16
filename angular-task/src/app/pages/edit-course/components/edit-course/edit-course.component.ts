@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CourseModel } from 'src/app/shared/models/course.model';
 import { of, Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CoursesService } from 'src/app/shared/services/courses.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-course',
@@ -10,28 +14,27 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditCourseComponent implements OnInit {
 
-  constructor() { }
   course: CourseModel;
+  isReady: boolean;
+  mode: string;
   authors: Array<string>;
   allAuthors: Array<string>;
   editForm: FormGroup;
   ngOnInit() {
-    this.course =  {
-      "id": "a7cl47wfgd",
-      "title": "Become a Agent",
-      "creationDate": "2019-04-15",
-      "duration": 218,
-      "description": "rerum vel fugiat explicabo est recusandae reiciendis cumque vitae quaerat at qui excepturi nihil possimus et quas velit rerum ratione tenetur quo adipisci rerum nulla nihil ullam autem eligendi nesciunt ea qui nemo odio sapiente animi tempora possimus iste eaque dolorem recusandae quisquam amet provident assumenda dolores natus quo consectetur",
-      "authors": [
-        'Author1', 'Author2', 'Author3'
-      ]
-    }
     this.allAuthors = [
       'Author1', 'Author2', 'Author3', 'Author4', 'Author5'
     ];
-    if(this.course) {
-      this.editCourse();
+    if(this.activatedRoute.snapshot.params['id']) {
+      this.coursesService.getCourse(this.activatedRoute.snapshot.params['id']).subscribe(course => {
+        this.course = course;
+        this.isReady = true;
+        this.editCourse();
+        this.mode = 'edit';
+      });
     }else {
+      this.mode = 'create';
+      this.course = null;
+      this.isReady = true;
       this.createCourse();
     }
   }
@@ -41,20 +44,38 @@ export class EditCourseComponent implements OnInit {
       description: new FormControl('', Validators.required),
       creationDate: new FormControl('', Validators.required),
       duration: new FormControl('', Validators.required),
-      authors: new FormControl(this.allAuthors, Validators.required)
+      authors: new FormControl([], Validators.required)
     })
   }
   editCourse() {
     this.editForm = new FormGroup({
+      id: new FormControl(this.course.id),
       title: new FormControl(this.course.title, Validators.required),
       description: new FormControl(this.course.description, Validators.required),
-      creationDate: new FormControl(this.course.creationDate, Validators.required),
+      creationDate: new FormControl(this.datePipe.transform(this.course.creationDate, 'yyyy-MM-dd'), Validators.required),
       duration: new FormControl(this.course.duration, Validators.required),
       authors: new FormControl(this.course.authors, Validators.required)
     })
   }
-  onEditForm() {
-    console.log(this.editForm)
-  }
+  onSubmitForm() {
+    let submissionResult: Observable<CourseModel | HttpErrorResponse>;
+    if(this.mode === 'edit') {
+      submissionResult = this.coursesService.editCourse(this.editForm.value);
+    }else {
+      submissionResult = this.coursesService.addCourse(this.editForm.value);
+    }
 
+    submissionResult.subscribe((courseModel)=> {
+      this.router.navigateByUrl('/courses')
+    })
+  }
+  onCancel() {
+    this.router.navigateByUrl('/courses')
+  }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private coursesService: CoursesService,
+    private router: Router,
+    private datePipe: DatePipe
+  ) {}
 }

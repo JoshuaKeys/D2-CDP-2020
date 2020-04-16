@@ -1,9 +1,11 @@
-<article class="modal-window">
+<article class="modal-window" [ngClass]="{isOpen: isOpen}">
   <div class="modal-window__backdrop" (click)="closeModal()"></div>
   <div class="modal-window__main-content">
     <span class="modal-window__close-btn" (click)="closeModal()">X</span>
     <h1 class="modal-window__title">{{title}}</h1>
-    <div class="modal-window__body">{{message}}</div>
+    <div class="modal-window__body">
+      {{message}}
+    </div>
     <div class="modal-window__ctas-container">
       <button class="modal-window__ok-btn" (click)="confirmModal()">Ok</button>
       <button class="modal-window__cancel-btn" (click)="closeModal()">Cancel</button>

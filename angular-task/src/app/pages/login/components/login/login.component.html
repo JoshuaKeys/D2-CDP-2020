@@ -1,5 +1,6 @@
 <app-navigation [hideNav]="true"></app-navigation>
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div *ngIf="loginError" class="login-form__error">{{loginError}}</div>
   <div class="table">
     <div class="table__row">
       <span class="table__column">Login</span>

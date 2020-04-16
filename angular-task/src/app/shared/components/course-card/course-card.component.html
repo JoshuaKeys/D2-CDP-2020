@@ -6,12 +6,12 @@
       </div>
       <div class="course__top-section-group course__top-section-group--2">
           <span>{{creationDate | date:'dd.MM.yy'}}</span>
-          <button class="course__action-btn" >Edit Course</button>
+          <button class="course__action-btn" (click)="editCourse()">Edit Course</button>
       </div>
 
   </section>
   <section class="course__bottom-section">
       <span class="course__description">{{course.description}}</span>
-      <button class="course__action-btn">Delete Course</button>
+      <button class="course__action-btn" (click)="deleteCourse()">Delete Course</button>
   </section>
 </article>

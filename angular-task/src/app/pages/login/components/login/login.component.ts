@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor() { }
+  loginError: string;
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -21,7 +24,21 @@ export class LoginComponent implements OnInit {
     });
   }
   onLogin() {
-    console.log(this.loginForm.value)
-  }
+    this.loginError = null;
+    this.authService.loginUser(this.loginForm.value).subscribe((_)=> {
+      localStorage.setItem('isAuthorized', 'true');
+      this.router.navigateByUrl('/courses')
+      console.log('Hello People');
 
+    },
+    (error: HttpErrorResponse)=> {
+      if(error.status === 401) {
+        this.loginError = 'Wrong login or password'
+      }
+    })
+  }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 }

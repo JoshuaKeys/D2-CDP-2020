@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TransferListComponent } from './components/transfer-list/transfer-list.component';
@@ -11,10 +11,13 @@ import { AuthorsListComponent } from './components/authors-list/authors-list.com
   declarations: [EditCourseComponent, TransferListComponent, AuthorsListComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+  ],
+  providers: [
+    DatePipe
   ],
   exports: [
-    EditCourseComponent
+    EditCourseComponent,
   ]
 })
 export class EditCourseModule { }

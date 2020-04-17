@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable, } from 'rxjs';
 import { CourseModel } from '../../models/course.model';
-import { CoursesService } from '../../services/courses.service';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { Store } from '@ngrx/store';
+import { CoursesStateModel } from 'src/app/pages/courses/models/courses-state.model';
+import { fetchCoursesRequestAction, deleteCourseRequestAction, openModalAction, closeModalAction } from 'src/app/pages/courses/+state/courses.actions';
+import { selectCourses, selectModalState } from 'src/app/pages/courses/+state/courses.selectors';
 
 @Component({
   selector: 'app-course-list',
@@ -12,16 +15,18 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit {
-  courses: Observable<CourseModel[]>
+  courses$: Observable<CourseModel[]>
   filter: string;
-  isOpen = false;
+  isModalOpen$: Observable<boolean>;
   course: CourseModel;
   @ViewChild('appModal', {static: false}) modal: ModalWindowComponent;
   ngOnInit() {
-    this.courses = this.coursesService.getCourses()
+    this.store.dispatch(fetchCoursesRequestAction());
+    this.courses$ = this.store.select(selectCourses);
+    this.isModalOpen$ = this.store.select(selectModalState);
   }
   applyFilter(event) {
-    this.courses = this.coursesService.getCourses().pipe(
+    this.courses$ = this.courses$.pipe(
       map((course)=> course.filter(item=> {
         let regExp = new RegExp(event);
         return item.title.match(regExp);
@@ -32,25 +37,21 @@ export class CourseListComponent implements OnInit {
     this.router.navigateByUrl('courses/new');
   }
   deleteCourse(course: CourseModel) {
-    this.isOpen = true;
-    const div = this.renderer.createElement('div');
+    this.store.dispatch(openModalAction())
     this.modal.message = `Delete the course - ${course.title}?`;
     this.course = course;
   }
   onClose() {
-    this.isOpen = false;
+    this.store.dispatch(closeModalAction())
     this.course = null;
   }
   onDeleteConfirm() {
-    this.coursesService.deleteCourse(this.course).subscribe(
-      _=> {
-        this.courses = this.coursesService.getCourses();
-        this.onClose();
-    })
+
+    this.store.dispatch(deleteCourseRequestAction({course: this.course}));
+    this.course = null;
   }
   constructor(
-    private coursesService: CoursesService,
     private router: Router,
-    private renderer: Renderer2
+    private store: Store<CoursesStateModel>
   ) { }
 }

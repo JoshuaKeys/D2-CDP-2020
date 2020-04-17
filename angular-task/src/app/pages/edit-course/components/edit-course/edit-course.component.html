@@ -40,7 +40,7 @@
         <span class="table__column">
           <app-transfer-list [form]="editForm" [allAuthors]="allAuthors" formControlName="authors"></app-transfer-list>
           <div class="editForm__controls">
-            <button type="submit" [disabled]="editForm.invalid">Save</button><button type="reset">Cancel</button>
+            <button type="submit" [disabled]="editForm.invalid">Save</button><button type="reset" (click)="onCancel()">Cancel</button>
           </div>
         </span>
       </div>

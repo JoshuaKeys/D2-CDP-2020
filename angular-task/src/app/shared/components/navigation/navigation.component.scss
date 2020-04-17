@@ -24,6 +24,10 @@
       justify-content: space-between;
       align-items: center;
   }
+  &__mid-section {
+    min-width: 500px;
+    margin-left: 50px;
+  }
   border: thin solid rgb(216, 216, 216);
   padding: 20px;
   margin-bottom: 20px;

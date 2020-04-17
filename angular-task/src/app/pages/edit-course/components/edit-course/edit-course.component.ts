@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from 'src/app/shared/services/courses.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { State, Store } from '@ngrx/store';
+import { CoursesStateModel } from 'src/app/pages/courses/models/courses-state.model';
+import { editCourseRequestAction, addCourseRequestAction } from 'src/app/pages/courses/+state/courses.actions';
 
 @Component({
   selector: 'app-edit-course',
@@ -58,16 +61,11 @@ export class EditCourseComponent implements OnInit {
     })
   }
   onSubmitForm() {
-    let submissionResult: Observable<CourseModel | HttpErrorResponse>;
     if(this.mode === 'edit') {
-      submissionResult = this.coursesService.editCourse(this.editForm.value);
+      this.store.dispatch(editCourseRequestAction({course: this.editForm.value}))
     }else {
-      submissionResult = this.coursesService.addCourse(this.editForm.value);
+      this.store.dispatch(addCourseRequestAction({course: this.editForm.value}))
     }
-
-    submissionResult.subscribe((courseModel)=> {
-      this.router.navigateByUrl('/courses')
-    })
   }
   onCancel() {
     this.router.navigateByUrl('/courses')
@@ -76,6 +74,7 @@ export class EditCourseComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private coursesService: CoursesService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private store: Store<CoursesStateModel>
   ) {}
 }

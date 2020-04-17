@@ -4,8 +4,8 @@
     <button class="course-list__add-course-btn" (click)="addCourse()">Add course</button>
   </div>
 
-  <ul class="course-list__items" *ngIf="courses | async">
-    <li class="course-list__item" *ngFor="let course of (courses | async)">
+  <ul class="course-list__items" *ngIf="courses$ | async">
+    <li class="course-list__item" *ngFor="let course of (courses$ | async)">
       <app-course-card
         [course]="course"
         (onDeleteCourse)="deleteCourse($event)"
@@ -14,4 +14,4 @@
   </ul>
 </section>
 <app-footer></app-footer>
-<app-modal-window (close)="onClose()" (confirm)="onDeleteConfirm()" #appModal [isOpen]="isOpen"></app-modal-window>
+<app-modal-window (close)="onClose()" (confirm)="onDeleteConfirm()" #appModal [isOpen]="(isModalOpen$ | async)"></app-modal-window>

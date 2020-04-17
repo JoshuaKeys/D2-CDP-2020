@@ -7,42 +7,27 @@
   ],
   "courses": [
     {
-      "id": "dr98h4kvbx",
-      "title": "Become a Orchestrator",
-      "creationDate": "2019-10-18T09:33:36.286Z",
-      "duration": 96,
-      "description": "reiciendis blanditiis et molestiae est omnis ab fugiat sint quos vel dolorem qui officia sed ut ut et quis doloribus nihil nesciunt voluptatem ipsum voluptatem repellendus iste ratione laboriosam quia accusamus qui quae iusto ipsa ut sint labore soluta aut repellat velit excepturi aut explicabo saepe officia neque nisi at"
-    },
-    {
-      "id": "5fuepyjurj",
-      "title": "Become a Administrator",
-      "creationDate": "2019-09-02T01:41:57.000Z",
-      "duration": 129,
-      "description": "ullam enim temporibus repudiandae voluptas consequatur vero sint dolor fugiat sunt inventore tempore assumenda quas modi sit ut sed nobis voluptatem est cum magni quaerat rerum dolor aut enim rerum assumenda sed quasi labore quis qui incidunt odio temporibus expedita laborum non reprehenderit aut dolorum aut accusamus et aut iusto",
-      "authors": [
-        "Author1"
-      ]
-    },
-    {
-      "id": "uc3zgvfabb",
-      "title": "Become a Architect",
-      "creationDate": "2019-12-26T05:19:43.151Z",
-      "duration": 228,
-      "description": "quibusdam eos facilis error consequatur doloremque ex saepe nemo voluptates aspernatur dolorum autem totam doloremque vitae aperiam possimus debitis dolorem illum perspiciatis et totam doloremque autem inventore quasi unde nemo eveniet quidem maxime alias quis aut maxime voluptas nisi sint ab nulla et est pariatur et esse rerum accusantium repudiandae"
-    },
-    {
       "id": "ybfwqysca3",
-      "title": "Become a Technician",
-      "creationDate": "2019-08-04T15:38:06.448Z",
+      "title": "Become a Techniciansssss",
+      "creationDate": "2019-08-04",
       "duration": 86,
-      "description": "nesciunt eius sint assumenda et nostrum necessitatibus laudantium aliquam autem quia vel qui placeat minus quidem id dolorum sed numquam sapiente autem totam eum nisi sint nihil itaque ipsa possimus perspiciatis quasi error aliquid illum aut dolores rem amet magni ut enim enim ut rerum tempore perspiciatis vero sequi necessitatibus"
+      "description": "nesciunt eius sint assumenda et nostrum necessitatibus laudantium aliquam autem quia vel qui placeat minus quidem id dolorum sed numquam sapiente autem totam eum nisi sint nihil itaque ipsa possimus perspiciatis quasi error aliquid illum aut dolores rem amet magni ut enim enim ut rerum tempore perspiciatis vero sequi necessitatibus",
+      "authors": [
+        "Author2",
+        "Author4"
+      ]
     },
     {
       "id": "fzykpy7qvt",
       "title": "Become a Consultant",
-      "creationDate": "2019-03-02T19:16:00.032Z",
-      "duration": 299,
-      "description": "a commodi sed unde nisi nobis consequuntur est harum et omnis accusamus quaerat atque optio quia ut dolor autem nisi ab et ab sunt modi natus qui ex non at odio et autem et quis commodi rerum quis voluptas et saepe aut reiciendis officia veniam quia accusantium quibusdam voluptatem sit"
+      "creationDate": "2019-03-02",
+      "duration": "2999",
+      "description": "a commodi sed unde nisi nobis consequuntur est harum et omnis accusamus quaerat atque optio quia ut dolor autem nisi ab et ab sunt modi natus qui ex non at odio et autem et quis commodi rerum quis voluptas et saepe aut reiciendis officia veniam quia accusantium quibusdam voluptatem sit",
+      "authors": [
+        "Author3",
+        "Author2",
+        "Author4"
+      ]
     },
     {
       "id": "t9o26g1hsw",
@@ -73,28 +58,6 @@
       "description": "rerum vel fugiat explicabo est recusandae reiciendis cumque vitae quaerat at qui excepturi nihil possimus et quas velit rerum ratione tenetur quo adipisci rerum nulla nihil ullam autem eligendi nesciunt ea qui nemo odio sapiente animi tempora possimus iste eaque dolorem recusandae quisquam amet provident assumenda dolores natus quo consectetur",
       "authors": [
         "Author3"
-      ]
-    },
-    {
-      "id": "62d2b350-7fe7-11ea-bd59-2f67a23935a2",
-      "title": "asdfasdf",
-      "description": "asdfasdf",
-      "creationDate": "2020-04-23",
-      "duration": "300",
-      "authors": [
-        "Author3"
-      ]
-    },
-    {
-      "id": "b6d76300-7ff7-11ea-bd59-2f67a23935a2",
-      "title": "sdfgsgf",
-      "description": "sdfasfasd",
-      "creationDate": "2020-04-24",
-      "duration": "1222",
-      "authors": [
-        "Author2",
-        "Author4",
-        "Author5"
       ]
     }
   ],

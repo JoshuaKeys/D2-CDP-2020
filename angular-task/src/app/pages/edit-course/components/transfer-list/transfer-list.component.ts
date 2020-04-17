@@ -25,7 +25,6 @@ export class TransferListComponent implements OnInit, ControlValueAccessor {
     if(value) {
       this.rightItems = value;
       this.leftItems = this.allAuthors.filter((item)=> value.findIndex(valueItem=> item === valueItem) === -1 )
-      console.log(this.rightItems, this.leftItems);
     }else {
       this.rightItems = [];
       this.leftItems = this.allAuthors;

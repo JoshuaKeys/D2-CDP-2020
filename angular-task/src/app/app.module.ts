@@ -7,7 +7,10 @@ import { CoursesModule } from './pages/courses/courses.module';
 import { EditCourseModule } from './pages/edit-course/edit-course.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './ngrx/reducer';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +21,10 @@ import { AppRoutingModule } from './app-routing.module';
     CoursesModule,
     EditCourseModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({'app':  appReducer}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,38 @@
+<ActionBar>
+  <NavigationButton
+    (tap)="onBackTap()"
+    android.systemIcon="ic_menu_back"
+  ></NavigationButton>
+</ActionBar>
+
+<GridLayout marginTop="100px">
+  <StackLayout>
+    <form [formGroup]="addForm">
+      <GridLayout
+        margin="20"
+        rows="auto, auto, auto, auto, auto, auto"
+        columns="auto, *"
+      >
+        <Label textAlignment="right" text="Title" row="0" col="0"></Label>
+        <TextField formControlName="name" row="0" col="1"></TextField>
+        <Label textAlignment="right" text="Description" row="1" col="0"></Label>
+        <TextField formControlName="description" row="1" col="1"></TextField>
+        <Label textAlignment="right" text="Picture Url" row="2" col="0"></Label>
+        <TextField formControlName="picture" row="2" col="1"></TextField>
+        <Label textAlignment="right" text="Duration" row="3" col="0"></Label>
+        <TextField formControlName="duration" row="3" col="1"></TextField>
+        <Label textAlignment="right" text="Date" row="4" col="0"></Label>
+        <TextField formControlName="date" row="4" col="1"></TextField>
+        <Button
+          background="green"
+          row="5"
+          col="1"
+          horizontalAlignment="right"
+          text="Submit"
+          [isEnabled]="addForm.valid"
+          (tap)="submit()"
+        ></Button>
+      </GridLayout>
+    </form>
+  </StackLayout>
+</GridLayout>

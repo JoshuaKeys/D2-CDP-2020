@@ -1,0 +1,54 @@
+<ActionBar>
+  <NavigationButton
+    (tap)="onBackTap()"
+    android.systemIcon="ic_menu_back"
+  ></NavigationButton>
+  <Label [text]="item.name"></Label>
+</ActionBar>
+
+<GridLayout marginTop="100px" *ngIf="item">
+  <StackLayout>
+    <form [formGroup]="editForm">
+      <GridLayout
+        margin="20"
+        rows="auto, auto, auto, auto, auto, auto"
+        columns="auto, *"
+      >
+        <Label textAlignment="right" text="Title" row="0" col="0"></Label>
+        <TextField formControlName="name" row="0" col="1"></TextField>
+        <Label textAlignment="right" text="Description" row="1" col="0"></Label>
+        <TextField formControlName="description" row="1" col="1"></TextField>
+        <Label textAlignment="right" text="Picture Url" row="2" col="0"></Label>
+        <TextField formControlName="picture" row="2" col="1"></TextField>
+        <Label textAlignment="right" text="Duration" row="3" col="0"></Label>
+        <TextField formControlName="duration" row="3" col="1"></TextField>
+        <Label textAlignment="right" text="Date" row="4" col="0"></Label>
+        <TextField formControlName="date" row="4" col="1"></TextField>
+        <StackLayout row="5" col="1" orientation="horizontal">
+          <Button
+            background="green"
+            borderWidth="1"
+            horizontalAlignment="right"
+            text="Submit"
+            [isEnabled]="editForm.valid"
+            (tap)="submit()"
+          ></Button>
+          <Button
+            background="blue"
+            borderWidth="1"
+            horizontalAlignment="right"
+            text="Cancel"
+            (tap)="onBackTap()"
+          ></Button>
+          <Button
+            background="red"
+            borderWidth="1"
+            horizontalAlignment="right"
+            text="Delete"
+            (tap)="deleteCourse(item.id)"
+          ></Button>
+        </StackLayout>
+      </GridLayout>
+    </form>
+  </StackLayout>
+</GridLayout>

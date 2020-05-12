@@ -1,0 +1,39 @@
+<ActionBar>
+  <Label text="Home"></Label>
+</ActionBar>
+<DockLayout stretchLastChild="true">
+  <form [formGroup]="searchForm">
+    <SearchBar
+      hint="Search for courses"
+      dock="top"
+      formControlName="searchBar"
+      (textChange)="onTextChanged($event)"
+    ></SearchBar>
+  </form>
+
+  <Button
+    text="Add Course"
+    dock="top"
+    horizontalAlignment="left"
+    (tap)="addCourse()"
+  ></Button>
+  <ListView [items]="items">
+    <ng-template let-item="item">
+      <GridLayout rows="auto" columns="auto, *, auto">
+        <Image src="{{ item.picture }}" width="100" rowSpan="2" col="0"></Image>
+        <StackLayout row="0" col="1">
+          <Label [text]="item.name"></Label>
+          <Label textWrap="true" [text]="item.description"></Label>
+          <Label [text]="item.duration"></Label>
+          <Label [text]="item.date"></Label>
+        </StackLayout>
+        <Button
+          text="Edit"
+          row="0"
+          col="2"
+          (tap)="goToEditCourse(item.id)"
+        ></Button>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</DockLayout>
